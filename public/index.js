@@ -5,6 +5,7 @@ function onLoad() {
         const input = document.getElementById("optionsInput").value;
         const bingoCard = generateBingoObject(input);
         console.log(bingoCard);
+        renderBingoCard(bingoCard);
     }
     document.getElementById("optionsInput").oninput = (ev) => {
         setErrorMessage("");
@@ -31,6 +32,20 @@ function generateBingoObject(inputText) {
         bingoCard.push(currentRow);
     }
     return bingoCard;
+}
+
+function renderBingoCard(bingoCard) {
+    let html = '';
+    for (let i = 0; i < bingoCard.length; i++) {
+        html += '<tr>';
+        for (let j = 0; j < bingoCard[i].length; j++) {
+            const entry = bingoCard[i][j];
+            html += `<td>${entry}</td>`;
+        }
+        html += '</tr>';
+    }
+    html = `<table><tbody>${html}</tbody></table>`;
+    document.getElementById('output').innerHTML = html;
 }
 
 function setErrorMessage(msg) {
