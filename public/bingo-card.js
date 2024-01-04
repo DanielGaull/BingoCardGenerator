@@ -4,7 +4,7 @@ function onLoad() {
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('card')) {
         const card = urlParams.get('card');
-        const bingoCardObj = JSON.parse(card);
+        const bingoCardObj = decodeCard(card);
         renderBingoCard(bingoCardObj);
     }
 }

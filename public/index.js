@@ -1,7 +1,3 @@
-const SIZE = 5;
-const REQUIRED_ENTRIES = SIZE * SIZE - 1;
-const MIDDLE = Math.floor(SIZE / 2);
-
 function onLoad() {
     document.getElementById("generateButton").onclick = (ev) => {
         const input = document.getElementById("optionsInput").value;
@@ -11,8 +7,7 @@ function onLoad() {
         const anchor = document.getElementById("outputLink");
         anchor.innerText = "Permanent link to this card";
         const encodedCard = encodeCard(bingoCard);
-        anchor.setAttribute('href', `/bingo-card?card=${encodedCard}`);
-        console.log(`/bingo-card?card=${encodedCard}`);
+        anchor.setAttribute('href', `bingo-card.html?card=${encodedCard}`);
     }
     document.getElementById("optionsInput").oninput = (ev) => {
         setErrorMessage("");
