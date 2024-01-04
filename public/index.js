@@ -4,7 +4,6 @@ function onLoad() {
     document.getElementById("generateButton").onclick = (ev) => {
         const input = document.getElementById("optionsInput").value;
         const bingoCard = generateBingoObject(input);
-        console.log(bingoCard);
         renderBingoCard(bingoCard);
     }
     document.getElementById("optionsInput").oninput = (ev) => {
@@ -40,7 +39,7 @@ function renderBingoCard(bingoCard) {
         html += '<tr>';
         for (let j = 0; j < bingoCard[i].length; j++) {
             const entry = bingoCard[i][j];
-            html += `<td>${entry}</td>`;
+            html += `<td><div class="cell">${entry}</div></td>`;
         }
         html += '</tr>';
     }
