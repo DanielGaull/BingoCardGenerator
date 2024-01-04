@@ -1,4 +1,6 @@
 const SIZE = 5;
+const REQUIRED_ENTRIES = SIZE * SIZE - 1;
+const MIDDLE = Math.floor(SIZE / 2);
 
 function onLoad() {
     document.getElementById("generateButton").onclick = (ev) => {
@@ -15,8 +17,8 @@ function onLoad() {
 // inputText: string
 function generateBingoObject(inputText) {
     const lines = inputText.split('\n');
-    if (lines.length < SIZE*SIZE) {
-        setErrorMessage(`Must provide at least ${SIZE*SIZE} options; only ${lines.length} given.`);
+    if (lines.length < REQUIRED_ENTRIES) {
+        setErrorMessage(`Must provide at least ${REQUIRED_ENTRIES} options; only ${lines.length} given.`);
         return;
     }
     // Start grabbing random items from the lines, adding it to the 2D array, and then removing it from lines
@@ -25,8 +27,12 @@ function generateBingoObject(inputText) {
     for (let i = 0; i < SIZE; i++) {
         currentRow = [];
         for (let j = 0; j < SIZE; j++) {
-            let item = popRandomItem(lines);
-            currentRow.push(item);
+            if (i == MIDDLE && j == MIDDLE) {
+                currentRow.push("FREE SPACE");
+            } else {
+                let item = popRandomItem(lines);
+                currentRow.push(item);
+            }
         }
         bingoCard.push(currentRow);
     }
